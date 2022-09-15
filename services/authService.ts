@@ -6,14 +6,28 @@ export const authApi = createApi({
     baseUrl: "http://localhost:9000/api/",
   }),
   endpoints: (builder) => ({
-    fetchAuth: builder.mutation<any, any>({
+    signUp: builder.mutation<any, any>({
       query: (params) => ({
         url: "registration",
         method: "POST",
         body: params,
       }),
     }),
+    signIn: builder.mutation<any, any>({
+      query: (params) => ({
+        url: "login",
+        method: "POST",
+        body: params,
+      }),
+    }),
+    logout: builder.mutation<any, any>({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useFetchAuthMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useLogoutMutation } =
+  authApi;

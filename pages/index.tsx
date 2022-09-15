@@ -1,21 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import { Button } from "antd";
-import { useActions } from "hooks/useActions";
-import { useTypedSelector } from "hooks/useTypeSelector";
-import { useFetchAuthMutation } from "services/authService";
+import styles from "../styles/home.module.css";
+import MainLayout from "../components/layouts/MainLayout";
+import Header from "../components/for-pages/home/Header";
 
 const Home: NextPage = () => {
-  const { setUserName } = useActions();
-  const { name } = useTypedSelector((state) => state.userReducer);
-  const [fetchAuth] = useFetchAuthMutation();
-
-  const handleClick = () => {
-    setUserName("sdf");
-    fetchAuth({ email: "femakeoverweb@gmail.com", password: "root" });
-  };
-
   return (
     <div className={styles.container}>
       <Head>
@@ -25,10 +14,9 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Button type="primary" onClick={handleClick}>
-          Button
-        </Button>
-        {name}
+        <MainLayout>
+          <Header />
+        </MainLayout>
       </main>
 
       <footer className={styles.footer}></footer>
