@@ -11,31 +11,13 @@ import styles from "../../../styles/authMenu.module.css";
 
 const AuthMenu = () => {
   const router = useRouter();
-  const { setIsAuth } = useActions();
-  const { isAuth } = useTypedSelector((state) => state.userReducer);
-  const [signIn, { isSuccess }] = useSignInMutation();
-  const [signUp] = useSignUpMutation();
-
-  const signInHandler = () => {
-    signIn({ email: "femakeoverweb@gmail.com", password: "root" });
-  };
-  const signUpHandler = () => {
-    signUp({ email: "femakeoverweb@gmail.com", password: "root" });
-  };
-
-  useEffect(() => {
-    if (isSuccess) {
-      setIsAuth(true);
-      router.push("./dashboard");
-    }
-  }, [isSuccess]);
 
   return (
     <div className={styles.root}>
-      <Button type="primary" onClick={signInHandler}>
+      <Button type="primary" onClick={() => router.push("./signin")}>
         Sign In
       </Button>
-      <Button type="primary" onClick={signUpHandler}>
+      <Button type="primary" onClick={() => router.push("./signup")}>
         Sign Up
       </Button>
     </div>

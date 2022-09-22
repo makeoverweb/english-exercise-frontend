@@ -4,8 +4,10 @@ import styles from "../../../styles/header.module.css";
 import logo from "../../icons/logo.png";
 import Image from "next/image";
 import AuthMenu from "./AuthMenu";
+import { useTypedSelector } from "../../../hooks/useTypeSelector";
 
 const Header = () => {
+  const { isAuth } = useTypedSelector((state) => state.userReducer);
   return (
     <div className={styles.root}>
       <Link href={"/"}>
@@ -14,7 +16,7 @@ const Header = () => {
         </div>
       </Link>
       <Navbar />
-      <AuthMenu />
+      {!isAuth && <AuthMenu />}
     </div>
   );
 };

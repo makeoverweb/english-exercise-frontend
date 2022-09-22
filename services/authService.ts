@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
+import { IAuthResponse } from "../models/response/IAuthResponse";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -24,6 +25,11 @@ export const authApi = createApi({
       query: () => ({
         url: "logout",
         method: "POST",
+      }),
+    }),
+    checkAuth: builder.query<IAuthResponse, unknown>({
+      query: () => ({
+        url: "/refresh",
       }),
     }),
   }),
